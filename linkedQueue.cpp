@@ -13,16 +13,6 @@ void printqueue(LinkedQueue &qq) {
   cout << "] L:" << lengthqueue(qq) << endl;
 }
 
-struct item {
-    int value;
-    item *next;
-};
-
-struct LinkedQueue {
-    item *head = NULL;
-    item *tail = NULL;
-};
-
 void enqueue(LinkedQueue &qq, int n) {
     item *newItem = new item;
     newItem->value = n;
