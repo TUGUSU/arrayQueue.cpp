@@ -11,27 +11,23 @@ void printqueue(ArrayQueue &qq) {
   cout << "] L:" << qq.size << endl;
 }
 
-// Queue-д элемент нэмэх
 void enqueue(ArrayQueue &qq, int n) {
-    if (qq.size == 100) {  // Queue capacity is 100
+    if (qq.size == qq.capacity) {
         cout << "Queue is full!" << endl;
         return;
     }
-    qq.values[qq.size] = n;  // Add new element at the end
-    qq.size++;               // Increment the size
+    qq.rear = (qq.rear + 1) % qq.capacity;  
+    qq.values[qq.rear] = n;  
+    qq.size++;  
 }
 
-// Queue-с элемент гаргах, хоосон бол -1 буцаах
 int dequeue(ArrayQueue &qq) {
     if (qq.size == 0) {
         cout << "Queue is empty!" << endl;
         return -1;
     }
-    int removedValue = qq.values[0];  // Get the first element
-    // Shift all elements to the left
-    for (int i = 1; i < qq.size; i++) {
-        qq.values[i - 1] = qq.values[i];
-    }
-    qq.size--;  // Decrease the size
+    int removedValue = qq.values[qq.front];  
+    qq.front = (qq.front + 1) % qq.capacity; 
+    qq.size--;  
     return removedValue;
 }
