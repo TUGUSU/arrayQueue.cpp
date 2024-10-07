@@ -3,34 +3,35 @@
 
 using namespace std;
 
-// Print all elements in the queue
 void printqueue(ArrayQueue &qq) {
-    cout << "[ ";
-    for (int i = 0; i < qq.size; i++) {
-        cout << qq.values[(qq.front + i) % qq.capacity] << " ";  // Adjusted to print from the front
-    }
-    cout << "] L:" << qq.size << endl;
+  cout << "[ ";
+  for (int i = 0; i < qq.size; i++) {
+    cout << qq.values[i] << " ";
+  }
+  cout << "] L:" << qq.size << endl;
 }
 
-// Add an element to the queue
+// Queue-д элемент нэмэх
 void enqueue(ArrayQueue &qq, int n) {
-    if (qq.size == qq.capacity) {
+    if (qq.size == 100) {  // Queue capacity is 100
         cout << "Queue is full!" << endl;
         return;
     }
-    qq.rear = (qq.rear + 1) % qq.capacity;  // Circular increment for rear
-    qq.values[qq.rear] = n;                 // Add new element
-    qq.size++;                              // Increase size
+    qq.values[qq.size] = n;  // Add new element at the end
+    qq.size++;               // Increment the size
 }
 
-// Remove an element from the queue
+// Queue-с элемент гаргах, хоосон бол -1 буцаах
 int dequeue(ArrayQueue &qq) {
     if (qq.size == 0) {
         cout << "Queue is empty!" << endl;
         return -1;
     }
-    int removedValue = qq.values[qq.front];     // Get the front element
-    qq.front = (qq.front + 1) % qq.capacity;    // Circular increment for front
-    qq.size--;                                  // Decrease size
+    int removedValue = qq.values[0];  // Get the first element
+    // Shift all elements to the left
+    for (int i = 1; i < qq.size; i++) {
+        qq.values[i - 1] = qq.values[i];
+    }
+    qq.size--;  // Decrease the size
     return removedValue;
 }
