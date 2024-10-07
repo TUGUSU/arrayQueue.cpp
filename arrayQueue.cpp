@@ -16,9 +16,9 @@ void enqueue(ArrayQueue &qq, int n) {
         cout << "Queue is full!" << endl;
         return;
     }
-    qq.rear = (qq.rear + 1) % qq.capacity; // Circular increment
-    qq.values[qq.rear] = n;  // Add new element
-    qq.size++;  // Increase size
+    qq.rear = (qq.rear + 1) % qq.capacity; // dugui helberer osgoh
+    qq.values[qq.rear] = n;  // shine element nemh
+    qq.size++;  // hemjeeg ihesgeh
 }
 
 int dequeue(ArrayQueue &qq) {
@@ -26,8 +26,8 @@ int dequeue(ArrayQueue &qq) {
         cout << "Queue is empty!" << endl;
         return -1;
     }
-    int removedValue = qq.values[qq.front];  // Get the front value
-    qq.front = (qq.front + 1) % qq.capacity; // Circular increment
-    qq.size--;  // Decrease size
+    int removedValue = qq.values[qq.front];  // ehnii elementin utgiig avah
+    qq.front = (qq.front + 1) % qq.capacity; // dugui helberer ihesgeh
+    qq.size--;  // hemjeeg bagasgah
     return removedValue;
 }
